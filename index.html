@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link rel="stylesheet" href="css/kg.css">
+    <link rel="stylesheet" href="css/materialize.min.css">
+    <style>
+        body {
+            background: linear-gradient(90deg, #ffffff, #d2e0f8)
+        }
+
+        .container {
+            width: 100%;
+            height: 35rem;
+
+            float: right;
+            display: flex;
+        }
+
+        .btn_container {
+            width: 100%;
+            height: 10rem;
+            text-align: center;
+        }
+
+        .btn_container:after {
+            content: '';
+            display: inline-block;
+            height: 100%;
+            vertical-align: middle;
+        }
+
+        #toast-container {
+            top: 80%;
+            right: 45%;
+        }
+    </style>
+</head>
+
+<body>
+    <nav style="background:#007497e0">
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo" style="
+            margin-left: 1rem;
+            font-size: 1.2rem;
+        ">知识图谱可视化</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href=""> </a></li>
+                <li><a href=""> </a></li>
+
+            </ul>
+        </div>
+    </nav>
+    <!-- <div id="container" class="container"></div> -->
+
+    <div class="row" style="
+    margin-top: 10px;
+    display: flex;
+">
+        <ul class="collapsible" data-collapsible="accordion" style="
+        margin-left: 4rem;width: 26rem
+    ">
+            <li class="active">
+                <div class="collapsible-header">节点数据</div>
+                <div class="collapsible-body" style="display: block;">
+                    <div class="row">
+                        <form class="col s12">
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <textarea id="t1" class="materialize-textarea"
+                                        style="border-bottom: 0px;width: 24rem;"></textarea>
+                                    <label for="textarea1">请输入节点数据</label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </li>
+            <li class="active">
+                <div class="collapsible-header">关系数据</div>
+                <div class="collapsible-body" style="display: block;">
+                    <div class="row">
+                        <form class="col s12">
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <textarea id="t2" class="materialize-textarea"
+                                        style="border-bottom: 0px;width: 24rem;"></textarea>
+                                    <label for="textarea1">请输入关系数据</label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </li>
+            <li class="active">
+                <div class="collapsible-header"></div>
+                <div class="collapsible-body" style="display: block;">
+                    <div class="row">
+                        <form class="col s12">
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <textarea id="t3" class="materialize-textarea"
+                                        style="border-bottom: 0px;width: 24rem;"></textarea>
+                                    <label for="textarea1">请输入节点配色</label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </li>
+            <li class="active">
+                <div class="collapsible-header"></div>
+                <div class="collapsible-body" style="display: block;">
+                    <div class="row">
+                        <form class="col s12">
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <textarea id="t4" class="materialize-textarea"
+                                        style="border-bottom: 0px;width: 24rem;"></textarea>
+                                    <label for="textarea1">请输入关系配色</label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </li>
+            <li class="active">
+                <div class="collapsible-header"></div>
+                <div class="collapsible-body" style="display: block;">
+                    <div class="row">
+                        <form class="col s12">
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <textarea id="t5" class="materialize-textarea"
+                                        style="border-bottom: 0px;width: 24rem;"></textarea>
+                                    <label for="textarea1">请输入回显内容</label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </li>
+            <li class="btn_container">
+                <a class="waves-effect waves-light btn-large" href="javascript:render();">渲染</a>
+            </li>
+        </ul>
+        <div class="col s12 m7" style="
+            float: right;
+            margin-right: 4rem;
+        ">
+            <div class="card">
+
+                <div id="container" class="card-image container">
+                    <span class="card-title" style="color: #868181;"> </span>
+                </div>
+
+
+                <div class="card-content" style="
+                background: aliceblue;
+            ">
+                    <p>知识图谱可视化</p>
+                </div>
+                <div class="card-action">
+                    <a style="
+                    color: #077abd;
+                " href="http://www.molapages.xyz"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/d3.v3.min.js"></script>
+    <script src="js/kg.js"></script>
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/materialize.min.js"></script>
+    <script>
+        var t1_text = '{"1":{"name":"补换卡知识","type":"1","attrName":"","method":"","note":"一级原子","startTime":"","endTime":""},"2":{"name":"业务介绍","type":"2","attrName":"","method":"","note":"二级原子","attrValue":"","describe":""},"3":{"name":"业务简介","type":"3","attrName":"","method":"","note":"三级原子","attrValue":"","describe":"补卡是重新申请手机卡并使用原移动号码的业务。一般因手机卡丢失、毁损等原因申请补卡，补卡后原卡自动作废。"},"4":{"name":"业务对象","type":"3","attrName":"","method":"","note":"三级原子","attrValue":"","describe":"号码状态正常的移动手机客户，停机客户需先恢复为正常状态，实名认证的移动手机客户，未实名认证的客户需机主本人带有效身份证件，到号码归属地自有营业厅办理实名认证后办理补卡。部分省份已支撑中国移动APP线上实名认证，具体以页面为准。"},"5":{"name":"资费标准","type":"2","attrName":"","method":"","note":"二级原子","attrValue":"","describe":"choice"},"6":{"name":"线下补卡资费","type":"3","attrName":"starLevel","method":"qryStarLevel","note":"三级原子","attrValue":"","describe":"线下"},"7":{"name":"线上补卡邮寄费","type":"3","attrName":"","method":"","note":"三级原子","attrValue":"","describe":"寄送至省内11元/件，寄送至省外15元/件。可邮寄范围：国内，除港澳台地区，暂不支持寄送至国外。部分省份无法线上线补换卡或只能线上补换普通SIM卡，具体以页面实际显示为准。"},"8":{"name":"办理方式","type":"2","attrName":"realname&idtype","method":"qryRealname,qryIdtype","note":"二级原子","attrValue":"","describe":""},"9":{"name":"省内补卡","type":"3","attrName":"realname&idtype","method":"qryRealname,qryIdtype","note":"三级原子","attrValue":"","describe":""},"10":{"name":"到厅补卡","type":"4","attrName":"realname&idtype","method":"qryRealname,qryIdtype","note":"二级原子","attrValue":"","describe":""},"11":{"name":"代办授权补卡","type":"4","attrName":"realname&idtype","method":"qryRealname,qryIdtype","note":"二级原子","attrValue":"","describe":""},"12":{"name":"跨区补卡","type":"3","attrName":"realname&idtype","method":"qryRealname,qryIdtype","note":"三级原子","attrValue":"","describe":""},"13":{"name":"山东客户在省外","type":"4","attrName":"realname&idtype","method":"qryRealname,qryIdtype","note":"四级原子","attrValue":"","describe":""},"14":{"name":"外省客户在山东","type":"4","attrName":"realname&idtype","method":"qryRealname,qryIdtype","note":"四级原子","attrValue":"","describe":""},"15":{"name":"时间信息","type":"2","attrName":"","method":"","note":"二级原子","attrValue":"","describe":""},"16":{"name":"位置信息","type":"2","attrName":"","method":"","note":"二级原子"},"17":{"name":"客户位置","type":"3","attrName":"","method":"","note":"三级原子"},"18":{"name":"营业厅位置信息","type":"3","attrName":"","method":"","note":"三级原子"},"19":{"name":"投诉信息","type":"2","attrName":"","method":"","describe":""},"20":{"name":"知识变更记录","type":"2","attrName":"","method":"","describe":""},"21":{"name":"MO套餐","type":"1","attrName":"","method":"","describe":""},"22":{"name":"守护宝","type":"1","attrName":"","method":"","describe":""},"23":{"name":"万能副卡","type":"1","attrName":"","method":"","describe":""},"24":{"name":"PUK","type":"1","attrName":"","method":"","describe":""},"25":{"name":"四星/五星/全球通客户（银卡、金卡、白金卡、钻石卡）","type":"4","attrName":"","method":"","note":"四级原子","attrValue":"四星及以上","describe":"0元/次"},"26":{"name":"一星/二星/三星/普通客户","type":"4","attrName":"","method":"","note":"四级原子","attrValue":"三星及以下","describe":"choice"},"27":{"name":"普通USIM卡","type":"5","attrName":"","method":"","note":"五级原子","attrValue":"普通USIM卡","describe":"20元/次"},"28":{"name":"超级SIM卡","type":"5","attrName":"","method":"","note":"五级原子","attrValue":"超级SIM卡","describe":"25元/次"}}'
+        document.getElementById("t1").value = t1_text;
+        var t2_text = t2_text = '[{"source": 1, "target": 2, "rela": "包含", "type": "包含关系"}, {"source": 2, "target": 3, "rela": "包含", "type": "包含关系"}, {"source": 2, "target": 4, "rela": "包含", "type": "包含关系"}, {"source": 1, "target": 5, "rela": "包含", "type": "包含关系"}, {"source": 5, "target": 6, "rela": "包含", "type": "包含关系"}, {"source": 5, "target": 7, "rela": "包含", "type": "包含关系"}, {"source": 1, "target": 8, "rela": "包含", "type": "包含关系"}, {"source": 8, "target": 9, "rela": "包含", "type": "包含关系"}, {"source": 9, "target": 10, "rela": "包含", "type": "包含关系"}, {"source": 9, "target": 11, "rela": "包含", "type": "包含关系"}, {"source": 8, "target": 12, "rela": "包含", "type": "包含关系"}, {"source": 12, "target": 13, "rela": "包含", "type": "包含关系"}, {"source": 12, "target": 14, "rela": "包含", "type": "包含关系"}, {"source": 1, "target": 15, "rela": "包含", "type": "包含关系"}, {"source": 1, "target": 16, "rela": "包含", "type": "包含关系"}, {"source": 16, "target": 17, "rela": "包含", "type": "包含关系"}, {"source": 16, "target": 18, "rela": "包含", "type": "包含关系"}, {"source": 1, "target": 19, "rela": "包含", "type": "包含关系"}, {"source": 1, "target": 20, "rela": "包含", "type": "包含关系"}, {"source": 1, "target": 21, "rela": "关联", "type": "关联关系"}, {"source": 1, "target": 22, "rela": "关联", "type": "关联关系"}, {"source": 1, "target": 23, "rela": "关联", "type": "关联关系"}, {"source": 1, "target": 24, "rela": "关联", "type": "关联关系"}, {"source": 6, "target": 25, "rela": "包含", "type": "包含关系"}, {"source": 6, "target": 26, "rela": "包含", "type": "包含关系"}, {"source": 26, "target": 27, "rela": "选择", "type": "选择关系"}, {"source": 26, "target": 28, "rela": "选择", "type": "选择关系"}]'
+        document.getElementById("t2").value = t2_text;
+
+        contentHook = function(item){
+            return "<div>"+item.name+"</div>"
+        }
+        function render() {
+            try {
+                $("svg").remove()
+                var data = {}
+                data.nodes = JSON.parse(document.getElementById("t1").value);
+                data.links = JSON.parse(document.getElementById("t2").value);
+                var config = {
+                    //鼠标mouseover后的弹窗
+                    content: document.getElementById("t5").value,
+                    contentHook: null,
+                    //节点配色方案（可为空)
+                    nodeColor: document.getElementById("t3").value ? JSON.parse(document.getElementById("t3").value) : null,
+                    //连接线配色方案（可为空）
+                    linkColor: document.getElementById("t4").value ? JSON.parse(document.getElementById("t4").value) : null,
+                    width: document.getElementById("container").clientWidth,
+                    height: document.getElementById("container").clientHeight
+                }
+                initKG(data, config, "#container")
+            } catch (err) {
+                Materialize.toast('渲染存在异常', 2000)
+                console.info(err)
+            }
+        }
+        render();
+
+    </script>
+
+</body>
